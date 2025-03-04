@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product 1 - Agriharaa</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Love Ya Like A Sister', cursive;
+            color: #2e7d32; /* Readable green color */
+            background: url('./img/bg4.jpeg ') no-repeat center center fixed;
+            background-size: cover; /* Ensures full image fits */
+            text-align: center;
+            font-size: 24px; /* Increased font size */
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .product-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white; /* White background for readability */
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-container img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+
+        .description {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .features-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            color: #2e7d32; /* Readable green color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+
+        .feature-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+
+        .feature-description {
+            flex: 1;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: black; /* Black header */
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 0 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            color: #2e7d32; /* Readable green color */
+            margin-top: 30px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="./img/Logo.png" alt="Logo">
+            <h1 style="color: white;">Agriharaa</h1>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <div class="content">
+        <div class="product-container">
+            <img src="./img/product1.jpg" alt="Product Image">
+            <div class="description">
+                <h3>About Product 1</h3>
+                <p>Product 1 is a high-quality agricultural tool designed to improve efficiency and productivity. It is made from durable materials, ensuring long-term use in various farming conditions. This tool helps in making agricultural tasks easier and more effective.</p>
+                <p class="price">Price: $49.99</p>
+                <h3 class="contact">Contact us through any mode given below</h3>
+            </div>
+        </div>
+
+        <div class="features-container">
+            <h2>Key Features</h2>
+            <div class="feature-item">
+                <img src="./img/feature1.jpg" alt="Feature 1">
+                <div class="feature-description">
+                    <h3>High Durability</h3>
+                    <p>Built with top-quality materials for long-lasting performance.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <img src="./img/feature2.jpg" alt="Feature 2">
+                <div class="feature-description">
+                    <h3>Easy to Use</h3>
+                    <p>Simple and ergonomic design makes it user-friendly.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <img src="./img/feature3.jpg" alt="Feature 3">
+                <div class="feature-description">
+                    <h3>Lightweight Design</h3>
+                    <p>Compact and lightweight for easy handling.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <img src="./img/feature4.jpg" alt="Feature 4">
+                <div class="feature-description">
+                    <h3>Suitable for All Types of Farming</h3>
+                    <p>Versatile tool designed for various agricultural needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Agriharaa. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

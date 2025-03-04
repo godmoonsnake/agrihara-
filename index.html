@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriharaa</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Love+Ya+Like+A+Sister&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Love Ya Like A Sister', cursive;
+            color: white;
+        }
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Scrolling Section */
+        .scrolling-section {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+        .scrolling-section::-webkit-scrollbar {
+            display: none;
+        }
+        .scrolling-section .image {
+            flex: 0 0 auto;
+            margin: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .scrolling-section img {
+            width: 200px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        /* Product Section */
+        .product-section {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .product-section h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #2e7d32;
+        }
+
+        .products {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1 1 250px;
+            max-width: 300px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .product h3 {
+            font-size: 24px;
+            color: #2e7d32;
+        }
+
+        .product p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .product button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            background: gold;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .product button:hover {
+            background: orange;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .social-media {
+            display: flex;
+        }
+        .social-media a {
+            color: white;
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        .contact-info {
+            display: flex;
+            align-items: center;
+        }
+        .contact-info p {
+            margin-left: 20px;
+            font-size: 18px;
+        }
+        .copyright {
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
+        /* Special text */
+        .love-ya {
+            font-family: 'Love Ya Like A Sister', cursive;
+            font-size: 28px;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <img src="./img/bg4.jpeg" class="bg-image" alt="Background Image">
+    
+    <div class="content">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <img src="./img/Logo.png" alt="Logo">
+                <h1 class="love-ya">Agriharaa</h1>
+            </div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Auto Scrolling Section -->
+        <section class="scrolling-section" id="scrolling-section">
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="customer1.jpg" alt="Customer using Product"></div>
+        </section>
+
+        <!-- Product Section -->
+        <section class="product-section">
+            <h2 class="love-ya">Our Products</h2>
+            <div class="products">
+                <div class="product">
+                    <img src="product2.jpg" alt="Product">
+                    <h3>Product 1</h3>
+                    <p>Best choice for quality and durability.</p>
+                    <a href="./product1.html"><button>view more </button> </a>
+                </div>
+                <div class="product">
+                    <img src="product2.jpg" alt="Product">
+                    <h3>Product 2</h3>
+                    <p>Great for everyday use.</p>
+                    <a href="./product2.html"><button>view more </button> </a>
+                </div>
+                <div class="product">
+                    <img src="product2.jpg" alt="Product">
+                    <h3>Product 3</h3>
+                    <p>Top-rated by customers.</p>
+                <a href="./product3.html"><button>view more </button> </a>
+                       
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="social-media">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <div class="contact-info">
+                <p><i class="fa-brands fa-whatsapp"></i> +971 569203100</p>
+                <p><i class="fa-solid fa-envelope"></i> info@agriharaa.com</p>
+            </div>
+        </footer>
+
+        <div class="copyright">
+            <p>&copy; 2024 Agriharaa. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        function startAutoScroll() {
+            const scrollSection = document.getElementById('scrolling-section');
+            setInterval(() => {
+                scrollSection.scrollBy({ left: 300, behavior: 'smooth' });
+                if (scrollSection.scrollLeft + scrollSection.clientWidth >= scrollSection.scrollWidth) {
+                    scrollSection.scrollTo({ left: 0, behavior: 'smooth' });
+                }
+            }, 2000);
+        }
+        startAutoScroll();
+    </script>
+</body>
+</html>
