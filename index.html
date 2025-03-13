@@ -134,6 +134,21 @@
             color: #2e7d32;
             font-size: 24px;
         }
+        
+        .slideshow-container {
+            max-width: 600px;
+            position: relative;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -155,6 +170,17 @@
             <h2>Welcome to Love Green</h2>
             <p>Your one-stop destination for high-quality agricultural tools and products. We help farmers achieve efficiency and sustainability with our innovative solutions.</p>
             <img src="./img/hero.jpg" alt="Agriculture Image">
+            <div class="slideshow-container">
+            <div class="slide">
+                <img src="./img/user1.jpg" alt="User 1">
+            </div>
+            <div class="slide">
+                <img src="./img/user2.jpg" alt="User 2">
+            </div>
+            <div class="slide">
+                <img src="./img/user3.jpg" alt="User 3">
+            </div>
+        </div>
         </div>
 
         <div class="about" id="about">
@@ -206,6 +232,22 @@
         </div>
         <p>&copy; 2024 Green Warli. All rights reserved.</p>
     </footer>
+     <script>
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 7000); // Change image every 7 seconds
+        }
+        showSlides();
+    </script>
 </body>
 </html>
 
