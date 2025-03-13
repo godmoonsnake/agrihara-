@@ -47,7 +47,6 @@
             text-decoration: none;
             font-size: 1.2rem;
             margin: 0 10px;
-            cursor: pointer;
         }
 
         .hero {
@@ -59,70 +58,39 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .hero img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-        }
-
-        .about {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 50px auto;
+        .slideshow-container {
+            position: relative;
             max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: auto;
         }
 
-        .products {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .product {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            flex: 1 1 250px;
-            max-width: 250px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .product img {
-            width: 150px;
-            height: 150px;
+        .slides {
+            display: none;
+            width: 100%;
             border-radius: 10px;
         }
-        .product h3 {
-            font-size: 24px;
-            color: #2e7d32;
-        }
-        .product p {
-            font-size: 18px;
-            color: #333;
-        }
-        .product button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            border: none;
-            background: gold;
+
+        .prev, .next {
             cursor: pointer;
-            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
             font-size: 18px;
-            transition: 0.3s;
-        }
-        .product button:hover {
-            background: orange;
+            transition: 0.6s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
         }
 
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: white;
-            color: #2e7d32;
-            margin-top: 30px;
-            font-size: 20px;
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
     </style>
 </head>
@@ -137,40 +105,84 @@
             <a href="#about">About</a>
             <a href="#products">Products</a>
             <a href="#contact">Contact</a>
-            <a href="#instructions">Instructions</a>
         </nav>
-    </header> 
+    </header>
+
+    <div class="content">
+        <div class="hero">
+            <h2>Welcome to Love Green</h2>
+            <p>Your one-stop destination for high-quality agricultural tools and products. We help farmers achieve efficiency and sustainability with our innovative solutions.</p>
+        </div>
+
+        <div class="slideshow-container">
+            <img class="slides" src="./img/slide1.jpg" alt="Slide 1">
+            <img class="slides" src="./img/slide2.jpg" alt="Slide 2">
+            <img class="slides" src="./img/slide3.jpg" alt="Slide 3">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <div class="about" id="about">
+            <h2>About Us</h2>
+            <p>Love Green is dedicated to promoting eco-friendly and efficient farming solutions. Our products are designed to enhance productivity and make farming more sustainable for future generations.</p>
+        </div>
+
         <div class="about" id="products">
             <h2>Our Products</h2>
             <div class="products">
                 <div class="product">
-                    <button><img src="product1.jpg" alt="Product 1"></button>
+                    <img src="product1.jpg" alt="Product 1">
                     <h3>Product 1</h3>
                     <p>Best choice for quality and durability.</p>
+                    <a href="./product1.html"><button>View More</button></a>
                 </div>
                 <div class="product">
-                    <button><img src="product2.jpg" alt="Product 2"></button>
+                    <img src="product2.jpg" alt="Product 2">
                     <h3>Product 2</h3>
                     <p>Great for everyday use.</p>
+                    <a href="./product2.html"><button>View More</button></a>
                 </div>
                 <div class="product">
-                    <button><img src="product3.jpg" alt="Product 3"></button>
+                    <img src="product3.jpg" alt="Product 3">
                     <h3>Product 3</h3>
                     <p>Top-rated by customers.</p>
+                    <a href="./product3.html"><button>View More</button></a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="about" id="contact">
-            <h2>Contact Us</h2>
-            <p>Reach out to us for any inquiries or assistance. We are here to help you with the best farming solutions.</p>
-            <p>Email: support@lovegreen.com | Phone: +123 456 7890</p>
+    <footer>
+        <div class="social-media">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
         </div>
-
-    <footer id="footer">
-        <p>&copy; 2024 green warli. All rights reserved.</p>
+        <p>&copy; 2024 Green Warli. All rights reserved.</p>
     </footer>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000);
+        }
+
+        function plusSlides(n) {
+            slideIndex += n - 1;
+            showSlides();
+        }
+    </script>
 </body>
 </html>
+
 
 
