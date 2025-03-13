@@ -134,19 +134,27 @@
             color: #2e7d32;
             font-size: 24px;
         }
-        
-        .slideshow-container {
-            max-width: 600px;
-            position: relative;
-            margin: auto;
+        .scrolling-section {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            background: rgba(239, 228, 228, 0.7);
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
         }
-
-        .slide {
+        .scrolling-section::-webkit-scrollbar {
             display: none;
         }
-
-        .slide img {
-            width: 100%;
+        .scrolling-section .image {
+            flex: 0 0 auto;
+            margin: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .scrolling-section img {
+            width: 200px;
+            height: 150px;
             border-radius: 10px;
         }
     </style>
@@ -166,24 +174,13 @@
     </header>
 
     <div class="content">
-          <div class="slideshow-container">
-            <div class="slide">
-                <img src="./img/_DSC0185-min.jpg" alt="User 1">
-            </div>
-            <div class="slide">
-                <img src="./img/_DSC0186-min.jpg" alt="User 2">
-            </div>
-            <div class="slide">
-                <img src="./img/_DSC0187-1-min.jpg" alt="User 3">
-            </div>
-              <div class="slide">
-                <img src="./img/_DSC0187-1-min.jpg" alt="User 4">
-            </div>
-              <div class="slide">
-                <img src="./img/_DSC0187-min.jpg" alt="User 5">
-            </div>
-              
-        </div>
+          <section class="scrolling-section" id="scrolling-section">
+            <div class="image"><img src="./img/_DSC0185-min.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="./img/_DSC0186-min.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="./img/_DSC0187-1-min.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="./img/bg3.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="./img/bg4.jpeg" alt="Customer using Product"></div>
+        </section>
         <div class="hero">
             <h2>Welcome to Love Green</h2>
             <p>Your one-stop destination for high-quality agricultural tools and products. We help farmers achieve efficiency and sustainability with our innovative solutions.</p>
@@ -250,21 +247,18 @@
         </div>
         <p>&copy; 2024 Green Warli. All rights reserved.</p>
     </footer>
- <script>
-        let slideIndex = 0;
-        function showSlides() {
-            let slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 7000); // Change image every 7 seconds
+
+    <script>
+        function startAutoScroll() {
+            const scrollSection = document.getElementById('scrolling-section');
+            setInterval(() => {
+                scrollSection.scrollBy({ left: 300, behavior: 'smooth' });
+                if (scrollSection.scrollLeft + scrollSection.clientWidth >= scrollSection.scrollWidth) {
+                    scrollSection.scrollTo({ left: 0, behavior: 'smooth' });
+                }
+            }, 2000);
         }
-        showSlides();
+        startAutoScroll();
     </script>
 </body>
 </html>
