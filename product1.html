@@ -341,75 +341,76 @@
 
     <script>
         // Auto-scrolling for images
-        function startAutoScroll() {
-            const scrollSection = document.getElementById('scrolling-section');
-            setInterval(() => {
-                scrollSection.scrollBy({ left: 300, behavior: 'smooth' });
-                if (scrollSection.scrollLeft + scrollSection.clientWidth >= scrollSection.scrollWidth) {
-                    scrollSection.scrollTo({ left: 0, behavior: 'smooth' });
-                }
-            }, 2000);
+function startAutoScroll() {
+    const scrollSection = document.getElementById('scrolling-section');
+    setInterval(() => {
+        scrollSection.scrollBy({ left: 300, behavior: 'smooth' });
+        if (scrollSection.scrollLeft + scrollSection.clientWidth >= scrollSection.scrollWidth) {
+            scrollSection.scrollTo({ left: 0, behavior: 'smooth' });
         }
-        startAutoScroll();
-       
-        // Chatbot functionality
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatbot-window');
-            if (chatWindow.style.display === 'none') {
-                chatWindow.style.display = 'block';
-            } else {
-                chatWindow.style.display = 'none';
-            }
-        }
+    }, 2000);
+}
+startAutoScroll();
 
-        async function sendMessage() {
-            const input = document.getElementById('chatbot-input');
-            const message = input.value.trim();
-            if (message) {
-                appendMessage('user', message);
-                const response = await getBotResponse(message); // Await the response
-                appendMessage('bot', response);
-                input.value = '';
-            }
-        }
+// Chatbot functionality
+function toggleChat() {
+    const chatWindow = document.getElementById('chatbot-window');
+    if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+        chatWindow.style.display = 'block';
+    } else {
+        chatWindow.style.display = 'none';
+    }
+}
 
-        function appendMessage(sender, message) {
-            const messagesDiv = document.getElementById('chatbot-messages');
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', sender);
-            messageElement.textContent = message;
-            messagesDiv.appendChild(messageElement);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
+async function sendMessage() {
+    const input = document.getElementById('chatbot-input');
+    const message = input.value.trim();
+    if (message) {
+        appendMessage('user', message);
+        const response = await getBotResponse(message);
+        appendMessage('bot', response);
+        input.value = '';
+    }
+}
 
-        asasync function getBotResponse(message) {
-    const apiKey = 'AIzaSyDRWmyvXDbrQlmTemN92eyr4hpOAXXtHYQ'; // Replace with a valid API key
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+function appendMessage(sender, message) {
+    const messagesDiv = document.getElementById('chatbot-messages');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender);
+    messageElement.textContent = message;
+    messagesDiv.appendChild(messageElement);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+async function getBotResponse(message) {
+    const topics = ['agriculture', 'farming', 'sustainability', 'tools', 'planting', 'fruits', 'growth time'];
+    const lowerCaseMessage = message.toLowerCase();
+
+    if (!topics.some(topic => lowerCaseMessage.includes(topic))) {
+        return "I'm sorry, I can only answer questions related to agriculture, farming, and plant growth.";
+    }
 
     try {
-        const response = await fetch(apiUrl, {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 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
             },
             body: JSON.stringify({
-                prompt: { text: message } // Correct request format
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: message }]
             })
         });
 
         const data = await response.json();
-
-        if (data && data.candidates && data.candidates.length > 0) {
-            return data.candidates[0].content.parts[0].text; 
-        } else {
-            return "I'm not sure, can you ask again differently?";
-        }
-
+        return data.choices[0].message.content;
     } catch (error) {
-        console.error('Error calling Gemini API:', error);
+        console.error('Error calling API:', error);
         return "Sorry, I'm having trouble connecting to the server. Please try again later.";
     }
 }
+
     </script>
 </body>
 </html>
