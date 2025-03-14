@@ -351,38 +351,38 @@
             }, 2000);
         }
         startAutoScroll();
+       // Chatbot functionality
+function toggleChat() {
+    const chatWindow = document.getElementById('chatbot-window');
+    if (chatWindow.style.display === 'none') {
+        chatWindow.style.display = 'block';
+    } else {
+        chatWindow.style.display = 'none';
+    }
+}
 
-        // Chatbot functionality
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatbot-window');
-            if (chatWindow.style.display === 'none') {
-                chatWindow.style.display = 'block';
-            } else {
-                chatWindow.style.display = 'none';
-            }
-        }
+function sendMessage() {
+    const input = document.getElementById('chatbot-input');
+    const message = input.value.trim();
+    if (message) {
+        appendMessage('user', message);
+        getBotResponse(message).then(response => {
+            appendMessage('bot', response);
+        });
+        input.value = '';
+    }
+}
 
-        function sendMessage() {
-            const input = document.getElementById('chatbot-input');
-            const message = input.value.trim();
-            if (message) {
-                appendMessage('user', message);
-                const response = getBotResponse(message);
-                appendMessage('bot', response);
-                input.value = '';
-            }
-        }
+function appendMessage(sender, message) {
+    const messagesDiv = document.getElementById('chatbot-messages');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender);
+    messageElement.textContent = message;
+    messagesDiv.appendChild(messageElement);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
 
-        function appendMessage(sender, message) {
-            const messagesDiv = document.getElementById('chatbot-messages');
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', sender);
-            messageElement.textContent = message;
-            messagesDiv.appendChild(messageElement);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        async function getBotResponse(message) {
+async function getBotResponse(message) {
     const topics = ['agriculture', 'farming', 'sustainability', 'tools'];
     const lowerCaseMessage = message.toLowerCase();
 
@@ -391,9 +391,9 @@
         return "I'm sorry, I can only answer questions related to agriculture and farming.";
     }
 
-    // Gemini API endpoint (replace with the actual endpoint)
+    // Fetch the API key securely (example: from environment variables or a secure storage)
     const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
-    const apiKey = AIzaSyDRWmyvXDbrQlmTemN92eyr4hpOAXXtHYQ
+    const apiKey = 'AIzaSyDRWmyvXDbrQlmTemN92eyr4hpOAXXtHYQ'; // Replace with the actual method to retrieve your API key
 
     try {
         const response = await fetch(apiUrl, {
