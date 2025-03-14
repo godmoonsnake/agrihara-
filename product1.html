@@ -382,41 +382,34 @@
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
 
-        async function getBotResponse(message) {
-            const topics = ['agriculture', 'farming', 'sustainability', 'tools'];
-            const lowerCaseMessage = message.toLowerCase();
+        asasync function getBotResponse(message) {
+    const apiKey = 'YOUR_NEW_API_KEY'; // Replace with a valid API key
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
-            // Check if the message is related to allowed topics
-            if (!topics.some(topic => lowerCaseMessage.includes(topic))) {
-                return "I'm sorry, I can only answer questions related to agriculture and farming.";
-            }
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: { text: message } // Correct request format
+            })
+        });
 
-            const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
-            const apiKey = 'AIzaSyDRWmyvXDbrQlmTemN92eyr4hpOAXXtHYQ'; // Replace with the actual method to retrieve your API key
+        const data = await response.json();
 
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: message
-                            }]
-                        }]
-                    })
-                });
-
-                const data = await response.json();
-                return data.candidates[0].content.parts[0].text; // Extract the response text
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                return "Sorry, I'm having trouble connecting to the server. Please try again later.";
-            }
+        if (data && data.candidates && data.candidates.length > 0) {
+            return data.candidates[0].content.parts[0].text; 
+        } else {
+            return "I'm not sure, can you ask again differently?";
         }
+
+    } catch (error) {
+        console.error('Error calling Gemini API:', error);
+        return "Sorry, I'm having trouble connecting to the server. Please try again later.";
+    }
+}
     </script>
 </body>
 </html>
