@@ -340,77 +340,96 @@
     </div>
 
     <script>
-        // Auto-scrolling for images
-function startAutoScroll() {
-    const scrollSection = document.getElementById('scrolling-section');
-    setInterval(() => {
-        scrollSection.scrollBy({ left: 300, behavior: 'smooth' });
-        if (scrollSection.scrollLeft + scrollSection.clientWidth >= scrollSection.scrollWidth) {
-            scrollSection.scrollTo({ left: 0, behavior: 'smooth' });
+        <script>
+    // Auto-scrolling for images
+    function startAutoScroll() {
+        const scrollSection = document.getElementById('scrolling-section');
+        setInterval(() => {
+            scrollSection.scrollBy({ left: 300, behavior: 'smooth' });
+            if (scrollSection.scrollLeft + scrollSection.clientWidth >= scrollSection.scrollWidth) {
+                scrollSection.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+        }, 2000);
+    }
+    startAutoScroll();
+
+    // Chatbot functionality
+    function toggleChat() {
+        const chatWindow = document.getElementById('chatbot-window');
+        if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+            chatWindow.style.display = 'block';
+        } else {
+            chatWindow.style.display = 'none';
         }
-    }, 2000);
-}
-startAutoScroll();
-
-// Chatbot functionality
-function toggleChat() {
-    const chatWindow = document.getElementById('chatbot-window');
-    if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
-        chatWindow.style.display = 'block';
-    } else {
-        chatWindow.style.display = 'none';
-    }
-}
-
-async function sendMessage() {
-    const input = document.getElementById('chatbot-input');
-    const message = input.value.trim();
-    if (message) {
-        appendMessage('user', message);
-        const response = await getBotResponse(message);
-        appendMessage('bot', response);
-        input.value = '';
-    }
-}
-
-function appendMessage(sender, message) {
-    const messagesDiv = document.getElementById('chatbot-messages');
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message', sender);
-    messageElement.textContent = message;
-    messagesDiv.appendChild(messageElement);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
-
-async function getBotResponse(message) {
-    const topics = ['agriculture', 'farming', 'sustainability', 'tools', 'planting', 'fruits', 'growth time'];
-    const lowerCaseMessage = message.toLowerCase();
-
-    if (!topics.some(topic => lowerCaseMessage.includes(topic))) {
-        return "I'm sorry, I can only answer questions related to agriculture, farming, and plant growth.";
     }
 
-    try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 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
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "user", content: message }]
-            })
-        });
-
-        const data = await response.json();
-        return data.choices[0].message.content;
-    } catch (error) {
-        console.error('Error calling API:', error);
-        return "Sorry, I'm having trouble connecting to the server. Please try again later.";
+    async function sendMessage() {
+        const input = document.getElementById('chatbot-input');
+        const message = input.value.trim();
+        if (message) {
+            appendMessage('user', message);
+            const response = await getBotResponse(message);
+            appendMessage('bot', response);
+            input.value = '';
+        }
     }
-}
 
+    function appendMessage(sender, message) {
+        const messagesDiv = document.getElementById('chatbot-messages');
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.textContent = message;
+        messagesDiv.appendChild(messageElement);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    async function getBotResponse(message) {
+        // Expanded list of agriculture-related keywords
+        const agricultureKeywords = [
+            'plant', 'crop', 'soil', 'seed', 'harvest', 'irrigation',
+            'fertilizer', 'compost', 'grow', 'cultivate', 'prune',
+            'pesticide', 'organic', 'farming', 'agriculture', 'sustainability',
+            'garden', 'orchard', 'vegetable', 'fruit', 'tree', 'cattle',
+            'livestock', 'tractor', 'tool', 'climate', 'season', 'yield'
+        ];
+
+        // Check if message is agriculture-related
+        const lowerMessage = message.toLowerCase();
+        const isAgricultureRelated = agricultureKeywords.some(keyword => 
+            lowerMessage.includes(keyword)
+        );
+
+        if (!isAgricultureRelated) {
+            return "I specialize in agriculture and farming. Feel free to ask about planting, crops, tools, or sustainable practices!";
+        }
+
+        try {
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': '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' // Replace with your actual API key
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [{
+                        role: "system",
+                        content: "You are an agricultural expert assistant. Provide detailed, practical advice about farming, planting, crop management, and sustainable agriculture."
+                    }, {
+                        role: "user",
+                        content: message
+                    }]
+                })
+            });
+
+            const data = await response.json();
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error('Error:', error);
+            return "I'm currently unable to access agricultural knowledge. Please try again later.";
+        }
+    }
+</script>
     </script>
 </body>
 </html>
