@@ -58,39 +58,186 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .slideshow-container {
-            position: relative;
-            max-width: 800px;
-            margin: auto;
-        }
-
-        .slides {
-            display: none;
+        .hero img {
             width: 100%;
+            max-width: 400px;
             border-radius: 10px;
         }
 
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
+        .about {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 50px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .products {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1 1 250px;
+            max-width: 250px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+        .product h3 {
+            font-size: 24px;
+            color: #2e7d32;
+        }
+        .product p {
             font-size: 18px;
-            transition: 0.6s ease;
-            background-color: rgba(0, 0, 0, 0.5);
+            color: #333;
+        }
+        .product button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            background: gold;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .product button:hover {
+            background: orange;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            color: #2e7d32;
+            margin-top: 30px;
+            font-size: 20px;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 10px;
+        }
+        .social-media a {
+            color: #2e7d32;
+            font-size: 24px;
+        }
+        .scrolling-section {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            background: rgba(239, 228, 228, 0.7);
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+        .scrolling-section::-webkit-scrollbar {
+            display: none;
+        }
+        .scrolling-section .image {
+            flex: 0 0 auto;
+            margin: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .scrolling-section img {
+            width: 200px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        /* Chatbot Styles */
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        #chatbot-button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
             border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
         }
 
-        .next {
-            right: 0;
+        #chatbot-window {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
         }
 
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+        #chatbot-header {
+            padding: 10px;
+            background: #2e7d32;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chatbot-body {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        #chatbot-input-area {
+            display: flex;
+            padding: 10px;
+        }
+
+        #chatbot-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #chatbot-input-area button {
+            margin-left: 10px;
+            padding: 10px 15px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .message.user {
+            background: #e1ffc7;
+            text-align: right;
+        }
+
+        .message.bot {
+            background: #f1f1f1;
+            text-align: left;
         }
     </style>
 </head>
@@ -109,17 +256,17 @@
     </header>
 
     <div class="content">
+          <section class="scrolling-section" id="scrolling-section">
+            <div class="image"><img src="./img/_DSC0187-min.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="./img/_DSC0186-min.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="./img/_DSC0187-min.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="./img/bg3.jpg" alt="Customer using Product"></div>
+            <div class="image"><img src="./img/bg4.jpeg" alt="Customer using Product"></div>
+        </section>
         <div class="hero">
             <h2>Welcome to Love Green</h2>
             <p>Your one-stop destination for high-quality agricultural tools and products. We help farmers achieve efficiency and sustainability with our innovative solutions.</p>
-        </div>
-
-        <div class="slideshow-container">
-            <img class="slides" src="./img/slide1.jpg" alt="Slide 1">
-            <img class="slides" src="./img/slide2.jpg" alt="Slide 2">
-            <img class="slides" src="./img/slide3.jpg" alt="Slide 3">
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <img src="./img/hero.jpg" alt="Agriculture Image">
         </div>
 
         <div class="about" id="about">
@@ -150,6 +297,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="about" id="contact">
+            <h2>Contact Us</h2>
+            <p>Reach out to us for any inquiries or assistance. We are here to help you with the best farming solutions.</p>
+            <p>Email: support@lovegreen.com | Phone: +123 456 7890</p>
+            <div class="social-media">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -161,28 +319,107 @@
         <p>&copy; 2024 Green Warli. All rights reserved.</p>
     </footer>
 
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+        <button id="chatbot-button" onclick="toggleChat()">
+            <i class="fa fa-comments"></i>
+        </button>
+        <div id="chatbot-window">
+            <div id="chatbot-header">
+                <span>Chat with us</span>
+                <button onclick="toggleChat()">×</button>
+            </div>
+            <div id="chatbot-body">
+                <div id="chatbot-messages"></div>
+            </div>
+            <div id="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Ask me about agriculture..." />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        let slideIndex = 0;
-        showSlides();
+        // Auto-scrolling for images
+        function startAutoScroll() {
+            const scrollSection = document.getElementById('scrolling-section');
+            setInterval(() => {
+                scrollSection.scrollBy({ left: 300, behavior: 'smooth' });
+                if (scrollSection.scrollLeft + scrollSection.clientWidth >= scrollSection.scrollWidth) {
+                    scrollSection.scrollTo({ left: 0, behavior: 'smooth' });
+                }
+            }, 2000);
+        }
+        startAutoScroll();
 
-        function showSlides() {
-            let slides = document.getElementsByClassName("slides");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+        // Chatbot functionality
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatbot-window');
+            if (chatWindow.style.display === 'none') {
+                chatWindow.style.display = 'block';
+            } else {
+                chatWindow.style.display = 'none';
             }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 3000);
         }
 
-        function plusSlides(n) {
-            slideIndex += n - 1;
-            showSlides();
+        function sendMessage() {
+            const input = document.getElementById('chatbot-input');
+            const message = input.value.trim();
+            if (message) {
+                appendMessage('user', message);
+                const response = getBotResponse(message);
+                appendMessage('bot', response);
+                input.value = '';
+            }
         }
+
+        function appendMessage(sender, message) {
+            const messagesDiv = document.getElementById('chatbot-messages');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = message;
+            messagesDiv.appendChild(messageElement);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        async function getBotResponse(message) {
+    const topics = ['agriculture', 'farming', 'sustainability', 'tools'];
+    const lowerCaseMessage = message.toLowerCase();
+
+    // Check if the message is related to allowed topics
+    if (!topics.some(topic => lowerCaseMessage.includes(topic))) {
+        return "I'm sorry, I can only answer questions related to agriculture and farming.";
+    }
+
+    // Gemini API endpoint (replace with the actual endpoint)
+    const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+    const apiKey = 'YOUR_GEMINI_API_KEY'; // Replace with your actual API key
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: message
+                    }]
+                }]
+            })
+        });
+
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text; // Extract the response text
+    } catch (error) {
+        console.error('Error calling Gemini API:', error);
+        return "Sorry, I'm having trouble connecting to the server. Please try again later.";
+    }
+}
     </script>
 </body>
 </html>
-
 
 
